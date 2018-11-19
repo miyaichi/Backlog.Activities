@@ -1,0 +1,25 @@
+{
+  "name": "Backlog.Activities",
+  "description": "Blank Library",
+  "main": "NewActivity.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "18.3.6877.28298",
+    "UiPath.System.Activities": "18.3.6877.28276",
+    "UiPath.WebAPI.Activities": "1.2.6863.33980"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.3.2.0",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Library",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
