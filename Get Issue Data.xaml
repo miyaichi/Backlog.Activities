@@ -108,7 +108,16 @@
       </If.Else>
     </If>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JsonObject]" JsonString="[Result]" />
-    <Sequence DisplayName="Retreve Data">
+    <Sequence DisplayName="Error Check">
+      <If Condition="[IsNothing(JsonObject(&quot;error&quot;))]">
+        <If.Else>
+          <Throw Exception="[new System.Exception(&quot;Backlog.Get Issue Data: &quot; + JsonObject(&quot;message&quot;).ToString)]" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </If.Else>
+        <sap2010:WorkflowViewState.IdRef>If_2</sap2010:WorkflowViewState.IdRef>
+      </If>
+      <sap2010:WorkflowViewState.IdRef>Sequence_7</sap2010:WorkflowViewState.IdRef>
+    </Sequence>
+    <Sequence DisplayName="Retreve Data" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[IssueData]</OutArgument>
@@ -153,14 +162,13 @@
           </ActivityAction>
         </ui:ForEach.Body>
       </ui:ForEach>
-      <sap2010:WorkflowViewState.IdRef>Sequence_6</sap2010:WorkflowViewState.IdRef>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d1NDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3VlIERhdGEueGFtbCpKA58BDgIBAVEFWA4CATVZBWYVAgEtZwVtCgIBJ24Fbr4BAgEibwWdARACAQJWMFaHAQIBOFMxUzsCATZZzgNZ1AMCATRZnwNZqQMCATJZzwJZ2wICATBZtQNZwwMCAS5nE2cnAgEoaQlrFAIBKm6xAW67AQIBJW6XAW6lAQIBI3AHdxACAR54B4MBFAIBFYQBB48BFAIBDJABB5sBFAIBA2oLatUBAgErdUx1bwIBIXJNclgCAR94mAF4iAICAR1+DYABGAIBFoQBoAGEAbECAgEUigENjAEYAgENkAGjAZABtAICAQuWAQ2YARgCAQRqHGqoAQIBLH8Pf+wBAgEXiwEPiwGNAgIBDpcBD5cBkQICAQV/zAF/6QECARx/VX9iAgEaf70Bf8UBAgEYiwHdAYsBigICAROLAVWLAWICARGLAb0BiwHWAQIBD5cB3wGXAY4CAgEKlwFVlwFiAgEIlwG9AZcB2AECAQY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1NDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3VlIERhdGEueGFtbC9KA6cBDgIBAVEFWA4CATpZBWYVAgEyZwVtCgIBLG4Fbr4BAgEnbwV3EAIBIngFpQEQAgECVjBWhwECAT1TMVM7AgE7Wc4DWdQDAgE5WZ8DWakDAgE3Wc8CWdsCAgE1WbUDWcMDAgEzZxNnJwIBLWkJaxQCAS9usQFuuwECASpulwFupQECAShwB3UMAgEjeQeAARACAR6BAQeMARQCARWNAQeYARQCAQyZAQekARQCAQNqC2rVAQIBMHAVcEECASRyC3KyAQIBJX5Mfm8CASF7TXtYAgEfgQGYAYEBiAICAR2HAQ2JARgCARaNAaABjQGxAgIBFJMBDZUBGAIBDZkBowGZAbQCAgELnwENoQEYAgEEahxqqAECATFyHHKFAQIBJogBD4gB7AECAReUAQ+UAY0CAgEOoAEPoAGRAgIBBYgBzAGIAekBAgEciAFViAFiAgEaiAG9AYgBxQECARiUAd0BlAGKAgIBE5QBVZQBYgIBEZQBvQGUAdYBAgEPoAHfAaABjgICAQqgAVWgAWICAQigAb0BoAHYAQIBBg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="329,60" />
-      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="329,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222,146">
         <sap:WorkflowViewStateService.ViewState>
@@ -169,7 +177,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="329,51">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="314,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -177,7 +185,17 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="329,60" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="314,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="307,60" />
       <sap2010:ViewStateData Id="AddToDictionary`2_1" sap:VirtualizedContainerService.HintSize="269,70">
         <sap:WorkflowViewStateService.ViewState>
@@ -227,14 +245,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ForEach`1_3" sap:VirtualizedContainerService.HintSize="307,328" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="329,1288">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="314,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="351,1765">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="336,619">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

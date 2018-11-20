@@ -68,12 +68,11 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: 課題一覧を取得する&#xD;&#xA;&#xD;&#xA;Parameter:&#xD;&#xA;SpaceName (In, String) : Space Name&#xD;&#xA;APIKey (In. String): API Key&#xD;&#xA;ProductIDs (in, String): Product ID list (ex: &quot;1073912335,1073912336&quot;)&#xD;&#xA;AssigneeIDs (In, String): Assignee ID list (ex: &quot;1074141855,1074141856&quot;)&#xD;&#xA;StatusIDs (In, String): Status ID list (ex: &quot;1,2,3&quot;)&#xD;&#xA;Issues (Out, DataTable): Issue list" DisplayName="Get Issues" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Description: 課題一覧を取得する&#xA;&#xA;Parameter:&#xA;SpaceName (In, String) : Space Name&#xA;APIKey (In. String): API Key&#xA;ProductIDs (in, String): Product ID list (ex: &quot;1073912335,1073912336&quot;)&#xA;AssigneeIDs (In, String): Assignee ID list (ex: &quot;1074141855,1074141856&quot;)&#xA;StatusIDs (In, String): Status ID list (ex: &quot;1,2,3&quot;)&#xA;Issues (Out, DataTable): Issue list" DisplayName="Get Issues" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Result" />
       <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
@@ -181,7 +180,6 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[EndPoint]" />
     <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" DisplayName="HTTP Request" EndPoint="[EndPoint]" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[Result]" StatusCode="[StatusCode]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
@@ -196,13 +194,14 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
+    <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[Result]" />
     <If Condition="[statusCode = 200]" DisplayName="StatusCode check" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Else>
         <Throw Exception="[new Exception( &quot;Backlog API Failed. Method: issues. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Else>
     </If>
     <ui:DeserializeJsonArray DisplayName="Deserialize json array" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[JArray]" JsonString="[Result]" />
-    <ui:BuildDataTable DataTable="[Issues]" DisplayName="Build Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;id&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;projectId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;issueKey&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;issueTypeName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;summary&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;statusId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;assigneeId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;assigneeName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:BuildDataTable DataTable="[Issues]" DisplayName="Build Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;id&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;projectId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;issueKey&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;issueTypeName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;summary&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;statusId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;assigneeId&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;assigneeName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
     <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[JArray]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JObject">
@@ -215,7 +214,7 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <sads:DebugSymbol.Symbol>d09DOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3Vlcy54YW1sO0wD2wEOAgEBUwVaDgIBV1sFeRICAUV6BZgBEgIBM5kBBbcBEgIBIbgBBbgBawIBHrkBBcYBFQIBFscBBcsBCgIBEcwBBcwBqQECAQzNAQXNAa0QAgEJzgEF2QESAgECWDBYdwIBWlUxVTsCAVhb5wFbiwICAVVhC3YWAgFGeucBeowCAgFDgAELlQEWAgE0mQHjAZkBhgICATGfAQu0ARYCASK4AVy4AWgCAR+5Ac4DuQHUAwIBHbkBnwO5AakDAgEbuQHPArkB2wICARm5AbUDuQHDAwIBF8cBE8cBJwIBEskBCckBzAECARTMAYYBzAGQAQIBD8wBnAHMAaYBAgENzQEizQEsAgEKzgGTAc4BnQECAQjUAQvWARYCAQNiDWkWAgFQag11EgIBR4EBDYgBFgIBPokBDZQBEgIBNaABDacBFgIBLKgBDbMBEgIBI8kBGskBnwECARXVAQ3VAYYEAgEEZzhnQQIBU2Q5ZD0CAVFqG2o3AgFIbBFzGgIBSoYBOIYBQQIBQYMBOYMBPQIBP4kBG4kBNwIBNosBEZIBGgIBOKUBOKUBQQIBL6IBOaIBPQIBLagBG6gBNwIBJKoBEbEBGgIBJtUBrwPVAbkDAgEG1QE41QGkAwIBBXE8cWECAU1uPW5HAgFLkAE8kAFiAgE7jQE9jQFHAgE5rwE8rwFgAgEprAE9rAFHAgEn</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d09DOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3Vlcy54YW1sO0sD2gEOAgEBUgVZDgIBV1oFeBICAUV5BZcBEgIBM5gBBbYBEgIBIbcBBcQBFQIBGcUBBcUBaQIBFsYBBcoBCgIBEcsBBcsBqQECAQzMAQXMAboPAgEJzQEF2AESAgECVzBXdwIBWlQxVDsCAVha5wFaiwICAVVgC3UWAgFGeecBeYwCAgFDfwuUARYCATSYAeMBmAGGAgIBMZ4BC7MBFgIBIrcBzgO3AdQDAgEgtwGfA7cBqQMCAR63Ac8CtwHbAgIBHLcBtQO3AcMDAgEaxQFcxQFmAgEXxgETxgEnAgESyAEJyAHMAQIBFMsBhgHLAZABAgEPywGcAcsBpgECAQ3MASLMASwCAQrNAZMBzQGdAQIBCNMBC9UBFgIBA2ENaBYCAVBpDXQSAgFHgAENhwEWAgE+iAENkwESAgE1nwENpgEWAgEspwENsgESAgEjyAEayAGfAQIBFdQBDdQBhgQCAQRmOGZBAgFTYzljPQIBUWkbaTcCAUhrEXIaAgFKhQE4hQFBAgFBggE5ggE9AgE/iAEbiAE3AgE2igERkQEaAgE4pAE4pAFBAgEvoQE5oQE9AgEtpwEbpwE3AgEkqQERsAEaAgEm1AGvA9QBuQMCAQbUATjUAaQDAgEFcDxwYQIBTW09bUcCAUuPATyPAWICATuMAT2MAUcCATmuATyuAWACASmrAT2rAUcCASc=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -277,8 +276,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="314,61" />
       <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="314,61" />
       <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="314,51">
         <sap:WorkflowViewStateService.ViewState>
