@@ -32,6 +32,7 @@
     <x:Property Name="SpaceName" Type="InArgument(x:String)" />
     <x:Property Name="APIKey" Type="InArgument(x:String)" />
     <x:Property Name="IssueID" Type="InArgument(x:String)" />
+    <x:Property Name="IssueData" Type="OutArgument(njl:JObject)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -83,16 +84,14 @@
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: 課題情報の更新&#xD;&#xA;&#xD;&#xA;Parameter:&#xD;&#xA;SpaceName (In, String): Space Name&#xD;&#xA;APIKey (In, String): API Key&#xD;&#xA;IssueID (In, String): Issue ID&#xD;&#xA;Summary (In String): 課題の件名&#xD;&#xA;ParentIssueId (In String): 課題の親課題のID&#xD;&#xA;Description (In String): 課題の詳細&#xD;&#xA;StatusId (In String): 状態のID&#xD;&#xA;ResolutionId (In String): 完了理由のID&#xD;&#xA;StartDate (In String): 課題の開始日&#xD;&#xA;DueDate (In String): 課題の期限日&#xD;&#xA;EstimatedHours (In String): 課題の予定時間&#xD;&#xA;ActualHours (In String): 課題の実績時間&#xD;&#xA;IssueTypeId (In String): 課題の種別のID&#xD;&#xA;CategoryIds (In String): 課題のカテゴリーのID(複数の場合はカンマ区切り)&#xD;&#xA;VersionIds (In String): 課題の発生バージョンのID(複数の場合はカンマ区切り)&#xD;&#xA;MilestoneIds (In String): 課題のマイルストーンのID(複数の場合はカンマ区切り)&#xD;&#xA;PriorityId (In String): 課題の優先度のID&#xD;&#xA;AssigneeId (In String): 課題の担当者のID&#xD;&#xA;NotifiedUserIds (In String): 課題の登録の通知を受け取るユーザーのID(複数の場合はカンマ区切り)&#xD;&#xA;AttachmentIds (In String): 添付ファイルの送信APIが返すID(複数の場合はカンマ区切り)&#xD;&#xA;Comment (In String): コメント&#xD;&#xA;" DisplayName="Update Issue" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Description: 課題情報の更新&#xA;&#xA;Parameter:&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xA;IssueID (In, String): Issue ID&#xA;Summary (In String): 課題の件名&#xA;ParentIssueId (In String): 課題の親課題のID&#xA;Description (In String): 課題の詳細&#xA;StatusId (In String): 状態のID&#xA;ResolutionId (In String): 完了理由のID&#xA;StartDate (In String): 課題の開始日&#xA;DueDate (In String): 課題の期限日&#xA;EstimatedHours (In String): 課題の予定時間&#xA;ActualHours (In String): 課題の実績時間&#xA;IssueTypeId (In String): 課題の種別のID&#xA;CategoryIds (In String): 課題のカテゴリーのID(複数の場合はカンマ区切り)&#xA;VersionIds (In String): 課題の発生バージョンのID(複数の場合はカンマ区切り)&#xA;MilestoneIds (In String): 課題のマイルストーンのID(複数の場合はカンマ区切り)&#xA;PriorityId (In String): 課題の優先度のID&#xA;AssigneeId (In String): 課題の担当者のID&#xA;NotifiedUserIds (In String): 課題の登録の通知を受け取るユーザーのID(複数の場合はカンマ区切り)&#xA;AttachmentIds (In String): 添付ファイルの送信APIが返すID(複数の場合はカンマ区切り)&#xA;Comment (In String): コメント&#xA;" DisplayName="Update Issue" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Endpoint" />
       <Variable x:TypeArguments="x:String" Name="Result" />
       <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
-      <Variable x:TypeArguments="njl:JObject" Name="IssueData" />
     </Sequence.Variables>
     <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
@@ -298,7 +297,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcVXBkYXRlIElzc3VlLnhhbWxaWgOuAg4CAQFhBWgOAwGNAWkFhwESAgF7iAEFpgESAgFppwEFxQESAgFXxgEF5AESAgFF5QEFgwISAgEzhAIFnQIVAgESngIFpAIKAgEMpQIFpQK9AQIBB6YCBawCEAIBAmYwZocBAwGQAWMxYzsDAY4BaecBaYwCAwGLAW8LhAEWAgF8iAHlAYgBiQICAXmOAQujARYCAWqnAekBpwGPAgIBZ60BC8IBFgIBWMYB7wHGAZgCAgFVzAEL4QEWAgFG5QHrAeUBkgICAUPrAQuAAhYCATSEAuEDhALnAwIBMpACRZACUwIBMIwCQIwCSQIBLpYCQ5YCTwIBLJMCR5MCVwIBKoQCsgOEArwDAgEohALiAoQC7AICASeVAkSVAlECASWUAkSUAlECASONAkaNAlUCASGRAkKRAk0CAR+SAkCSAkkCAR2EAsgDhALWAwIBG5cCQ5cCTwIBGY4CRI4CUQIBF5gCQJgCSQIBFY8CQY8CSwIBE54CE54CJwIBDaACCaICFAIBD6UCsAGlAroBAgEKpQKXAaUCpAECAQinAgerAgwCAQNwDXcWAwGGAXgNgwESAgF9jwENlgEWAgF0lwENogESAgFrrgENtQEWAgFitgENwQESAgFZzQEN1AEWAgFQ1QEN4AESAgFH7AEN8wEWAgE+9AEN/wESAgE1oQILoQLHAQIBEKcCFacCQAIBBKkCC6kCuwECAQV1OHVBAwGJAXI5cj0DAYcBeBt4NwIBfnoRgQEaAwGAAZQBOJQBQQIBd5EBOZEBPQIBdZcBG5cBNwIBbJkBEaABGgIBbrMBOLMBQQIBZbABObABPQIBY7YBG7YBNwIBWrgBEb8BGgIBXNIBONIBQQIBU88BOc8BPQIBUdUBG9UBNwIBSNcBEd4BGgIBSvEBOPEBQQIBQe4BOe4BPQIBP/QBG/QBNwIBNvYBEf0BGgIBOKECHKECmgECARGpAhypAo4BAgEGfzx/YgMBgwF8PXxHAwGBAZ4BPJ4BYQIBcZsBPZsBRwIBb70BPL0BYwIBX7oBPboBRwIBXdwBPNwBZgIBTdkBPdkBRwIBS/sBPPsBZAIBO/gBPfgBRwIBOQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcVXBkYXRlIElzc3VlLnhhbWxaWgOtAg4CAQFgBWcOAwGNAWgFhgESAgF7hwEFpQESAgFppgEFxAESAgFXxQEF4wESAgFF5AEFggISAgEzgwIFnAIVAgESnQIFowIKAgEMpAIFpAK9AQIBB6UCBasCEAIBAmUwZYcBAwGQAWIxYjsDAY4BaOcBaIwCAwGLAW4LgwEWAgF8hwHlAYcBiQICAXmNAQuiARYCAWqmAekBpgGPAgIBZ6wBC8EBFgIBWMUB7wHFAZgCAgFVywEL4AEWAgFG5AHrAeQBkgICAUPqAQv/ARYCATSDAuEDgwLnAwIBMo8CRY8CUwIBMIsCQIsCSQIBLpUCQ5UCTwIBLJICR5ICVwIBKoMCsgODArwDAgEogwLiAoMC7AICASeUAkSUAlECASWTAkSTAlECASOMAkaMAlUCASGQAkKQAk0CAR+RAkCRAkkCAR2DAsgDgwLWAwIBG5YCQ5YCTwIBGY0CRI0CUQIBF5cCQJcCSQIBFY4CQY4CSwIBE50CE50CJwIBDZ8CCaECFAIBD6QCsAGkAroBAgEKpAKXAaQCpAECAQimAgeqAgwCAQNvDXYWAwGGAXcNggESAgF9jgENlQEWAgF0lgENoQESAgFrrQENtAEWAgFitQENwAESAgFZzAEN0wEWAgFQ1AEN3wESAgFH6wEN8gEWAgE+8wEN/gESAgE1oAILoALHAQIBEKYCFaYCQAIBBKgCC6gCuwECAQV0OHRBAwGJAXE5cT0DAYcBdxt3NwIBfnkRgAEaAwGAAZMBOJMBQQIBd5ABOZABPQIBdZYBG5YBNwIBbJgBEZ8BGgIBbrIBOLIBQQIBZa8BOa8BPQIBY7UBG7UBNwIBWrcBEb4BGgIBXNEBONEBQQIBU84BOc4BPQIBUdQBG9QBNwIBSNYBEd0BGgIBSvABOPABQQIBQe0BOe0BPQIBP/MBG/MBNwIBNvUBEfwBGgIBOKACHKACmgECARGoAhyoAo4BAgEGfjx+YgMBgwF7PXtHAwGBAZ0BPJ0BYQIBcZoBPZoBRwIBb7wBPLwBYwIBX7kBPbkBRwIBXdsBPNsBZgIBTdgBPdgBRwIBS/oBPPoBZAIBO/cBPfcBRwIBOQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -436,7 +435,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Update_Issue_1" sap:VirtualizedContainerService.HintSize="564,1567" />
+      <sap2010:ViewStateData Id="Update_Issue_1" sap:VirtualizedContainerService.HintSize="376,1795" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

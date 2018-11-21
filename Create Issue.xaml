@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Create_Issue" mva:VisualBasic.Settings="{x:Null}"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Create_Issue"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
@@ -8,6 +8,33 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="SpaceName" Type="InArgument(x:String)" />
+    <x:Property Name="APIKey" Type="InArgument(x:String)" />
+    <x:Property Name="IssueId" Type="InArgument(x:String)" />
+    <x:Property Name="Summary" Type="InArgument(x:String)" />
+    <x:Property Name="ParentIssueId" Type="InArgument(x:String)" />
+    <x:Property Name="Description" Type="InArgument(x:String)" />
+    <x:Property Name="StatusId" Type="InArgument(x:String)" />
+    <x:Property Name="ResolutionId" Type="InArgument(x:String)" />
+    <x:Property Name="StartDate" Type="InArgument(x:String)" />
+    <x:Property Name="DueDate" Type="InArgument(x:String)" />
+    <x:Property Name="EstimatedHours" Type="InArgument(x:String)" />
+    <x:Property Name="ActualHours" Type="InArgument(x:String)" />
+    <x:Property Name="IssueTypeId" Type="InArgument(x:String)" />
+    <x:Property Name="CategoryIds" Type="InArgument(x:String)" />
+    <x:Property Name="VersionIds" Type="InArgument(x:String)" />
+    <x:Property Name="MilestoneIds" Type="InArgument(x:String)" />
+    <x:Property Name="PriorityId" Type="InArgument(x:String)" />
+    <x:Property Name="AssigneeId" Type="InArgument(x:String)" />
+    <x:Property Name="NotifiedUserIds" Type="InArgument(x:String)" />
+    <x:Property Name="AttachmentIds" Type="InArgument(x:String)" />
+    <x:Property Name="Comment" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Create_Issue_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -50,20 +77,38 @@
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Create Issue" sap2010:WorkflowViewState.IdRef="Sequence_1" sads:DebugSymbol.Symbol="d1FDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcQ3JlYXRlIElzc3VlLnhhbWwBNwM3igECAQE=" />
-  <sap2010:WorkflowViewState.IdRef>Create_Issue_1</sap2010:WorkflowViewState.IdRef>
+  <Sequence DisplayName="Create Issue" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="EndPoint" />
+      <Variable x:TypeArguments="x:String" Name="Result" />
+      <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
+    </Sequence.Variables>
+    <Assign>
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[EndPoint]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["https://" + SpaceName + ".backlog.jp/api/v2/issues/" + IssueId + "?apiKey=" + APIKey]</InArgument>
+      </Assign.Value>
+      <sap2010:WorkflowViewState.IdRef>Assign_1</sap2010:WorkflowViewState.IdRef>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xtaXlhaWNoaS55b3NoaWhpa29cRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcQ3JlYXRlIElzc3VlLnhhbWwEVANkDgIBAVoFYg4CAQJfMF+HAQIBBVwxXDsCAQM=</sads:DebugSymbol.Symbol>
+  </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="200,99">
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,184">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Create_Issue_1" sap:VirtualizedContainerService.HintSize="240,219" />
+      <sap2010:ViewStateData Id="Create_Issue_1" sap:VirtualizedContainerService.HintSize="304,304" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
