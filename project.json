@@ -21,6 +21,9 @@
   "projectType": "Library",
   "libraryOptions": {
     "includeOriginalXaml": false,
-    "privateWorkflows": []
+    "privateWorkflows": [
+      "_PrivateTest.xaml",
+      "_Test.xaml"
+    ]
   }
 }
