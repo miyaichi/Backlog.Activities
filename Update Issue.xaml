@@ -282,12 +282,12 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/x-www-form-urlencoded " DisplayName="HTTP Request" EndPoint="EndPoint" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="PATCH" Result="[Result]" StatusCode="[StatusCode]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" DisplayName="HTTP Request" EndPoint="[Endpoint]" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="PATCH" Result="[Result]" StatusCode="[StatusCode]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
       <ui:HttpClient.Headers>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/x-www-form-urlencoded</InArgument>
       </ui:HttpClient.Headers>
       <ui:HttpClient.Parameters>
         <InArgument x:TypeArguments="x:String" x:Key="summary">[Summary]</InArgument>
@@ -323,7 +323,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcVXBkYXRlIElzc3VlLnhhbWxfNwc3NgEGLQctNgEFMgcyNgEEKAcoNgEDPAc8NgECdAPHAg4CAQF6BYEBDgMBjQGCAQWgARICAXuhAQW/ARICAWnAAQXeARICAVffAQX9ARICAUX+AQWcAhICATOdAgW2AhUCARK3AgW9AgoCAQy+AgW+Ar0BAgEHvwIFxQIQAgECfzB/hwEDAZABfDF8OwMBjgGCAecBggGMAgMBiwGIAQudARYCAXyhAeUBoQGJAgIBeacBC7wBFgIBasAB6QHAAY8CAgFnxgEL2wEWAgFY3wHvAd8BmAICAVXlAQv6ARYCAUb+AesB/gGSAgIBQ4QCC5kCFgIBNJ0C4QOdAucDAgEyqQJFqQJTAgEwpQJApQJJAgEurwJDrwJPAgEsrAJHrAJXAgEqnQKyA50CvAMCASidAuICnQLsAgIBJ64CRK4CUQIBJa0CRK0CUQIBI6YCRqYCVQIBIaoCQqoCTQIBH6sCQKsCSQIBHZ0CyAOdAtYDAgEbsAJDsAJPAgEZpwJEpwJRAgEXsQJAsQJJAgEVqAJBqAJLAgETtwITtwInAgENuQIJuwIUAgEPvgKwAb4CugECAQq+ApcBvgKkAQIBCMACB8QCDAIBA4kBDZABFgMBhgGRAQ2cARICAX2oAQ2vARYCAXSwAQ27ARICAWvHAQ3OARYCAWLPAQ3aARICAVnmAQ3tARYCAVDuAQ35ARICAUeFAg2MAhYCAT6NAg2YAhICATW6Agu6AscBAgEQwAIVwAJAAgEEwgILwgK7AQIBBY4BOI4BQQMBiQGLATmLAT0DAYcBkQEbkQE3AgF+kwERmgEaAwGAAa0BOK0BQQIBd6oBOaoBPQIBdbABG7ABNwIBbLIBEbkBGgIBbswBOMwBQQIBZckBOckBPQIBY88BG88BNwIBWtEBEdgBGgIBXOsBOOsBQQIBU+gBOegBPQIBUe4BG+4BNwIBSPABEfcBGgIBSooCOIoCQQIBQYcCOYcCPQIBP40CG40CNwIBNo8CEZYCGgIBOLoCHLoCmgECARHCAhzCAo4BAgEGmAE8mAFiAwGDAZUBPZUBRwMBgQG3ATy3AWECAXG0AT20AUcCAW/WATzWAWMCAV/TAT3TAUcCAV31ATz1AWYCAU3yAT3yAUcCAUuUAjyUAmQCATuRAj2RAkcCATk=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcVXBkYXRlIElzc3VlLnhhbWxgNwc3NgEGLQctNgEFMgcyNgEEKAcoNgEDPAc8NgECdAPHAg4CAQF6BYEBDgMBjwGCAQWgARICAX2hAQW/ARICAWvAAQXeARICAVnfAQX9ARICAUf+AQWcAhICATWdAgW2AhUCARK3AgW9AgoCAQy+AgW+Ar0BAgEHvwIFxQIQAgECfzB/hwEDAZIBfDF8OwMBkAGCAecBggGMAgMBjQGIAQudARYCAX6hAeUBoQGJAgIBe6cBC7wBFgIBbMAB6QHAAY8CAgFpxgEL2wEWAgFa3wHvAd8BmAICAVflAQv6ARYCAUj+AesB/gGSAgIBRYQCC5kCFgIBNp0C0AOdAtYDAgE0qQJFqQJTAgEypQJApQJJAgEwrwJDrwJPAgEurAJHrAJXAgEsnQKhA50CqwMCASqdAs8CnQLbAgIBKK4CRK4CUQIBJq0CRK0CUQIBJKYCRqYCVQIBIqoCQqoCTQIBIKsCQKsCSQIBHp0CtwOdAsUDAgEcsAJDsAJPAgEaogJFogJmAgEZpwJEpwJRAgEXsQJAsQJJAgEVqAJBqAJLAgETtwITtwInAgENuQIJuwIUAgEPvgKwAb4CugECAQq+ApcBvgKkAQIBCMACB8QCDAIBA4kBDZABFgMBiAGRAQ2cARICAX+oAQ2vARYCAXawAQ27ARICAW3HAQ3OARYCAWTPAQ3aARICAVvmAQ3tARYCAVLuAQ35ARICAUmFAg2MAhYCAUCNAg2YAhICATe6Agu6AscBAgEQwAIVwAJAAgEEwgILwgK7AQIBBY4BOI4BQQMBiwGLATmLAT0DAYkBkQEbkQE3AwGAAZMBEZoBGgMBggGtATitAUECAXmqATmqAT0CAXewARuwATcCAW6yARG5ARoCAXDMATjMAUECAWfJATnJAT0CAWXPARvPATcCAVzRARHYARoCAV7rATjrAUECAVXoATnoAT0CAVPuARvuATcCAUrwARH3ARoCAUyKAjiKAkECAUOHAjmHAj0CAUGNAhuNAjcCATiPAhGWAhoCATq6Ahy6ApoBAgERwgIcwgKOAQIBBpgBPJgBYgMBhQGVAT2VAUcDAYMBtwE8twFhAgFztAE9tAFHAgFx1gE81gFjAgFh0wE90wFHAgFf9QE89QFmAgFP8gE98gFHAgFNlAI8lAJkAgE9kQI9kQJHAgE7</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
