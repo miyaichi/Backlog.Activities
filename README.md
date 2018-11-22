@@ -1,6 +1,6 @@
 # Backlog Activities
 
-Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、最低限必要なものだけ実装しています。認証はAPIキー方式のみをサポートしていますので、APIの設定( https://backlog.com/ja/help/usersguide/personal-settings/userguide2378/ )を参照し、事前にAPIキーを登録してください。
+Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、UiPathでワークフローを作成するのに最低限必要なものだけ実装しています。認証はAPIキー方式のみをサポートしていますので、APIの設定( https://backlog.com/ja/help/usersguide/personal-settings/userguide2378/ )を参照し、事前にAPIキーを登録してください。
 
 ## 実装されているメソッド
 
@@ -17,7 +17,7 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、最
 | AssigneeIDs    | 担当者のID(複数の場合はカンマ区切り)       |
 | StatusIDs      | 状態のID(複数の場合はカンマ区切り)         |
 
-**Output**
+#### Output
 
 | パラメーター名 | 内容                  |
 |:---------------|:----------------------|
@@ -115,4 +115,4 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、最
 #### Output
 | パラメーター名 | 内容                        |
 |:---------------|:----------------------------|
-| FileID         | 追加した課題の情報(JObject) |
+| FileData       | 追加した課題の情報(JObject) |
