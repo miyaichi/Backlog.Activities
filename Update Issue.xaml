@@ -12,6 +12,9 @@
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="SpaceName" Type="InArgument(x:String)" />
+    <x:Property Name="APIKey" Type="InArgument(x:String)" />
+    <x:Property Name="IssueID" Type="InArgument(x:String)" />
     <x:Property Name="Summary" Type="InArgument(x:String)" />
     <x:Property Name="ParentIssueId" Type="InArgument(x:String)" />
     <x:Property Name="Description" Type="InArgument(x:String)" />
@@ -30,9 +33,6 @@
     <x:Property Name="NotifiedUserIds" Type="InArgument(x:String)" />
     <x:Property Name="AttachmentIds" Type="InArgument(x:String)" />
     <x:Property Name="Comment" Type="InArgument(x:String)" />
-    <x:Property Name="SpaceName" Type="InArgument(x:String)" />
-    <x:Property Name="APIKey" Type="InArgument(x:String)" />
-    <x:Property Name="IssueID" Type="InArgument(x:String)" />
     <x:Property Name="IssueData" Type="OutArgument(njl:JObject)" />
   </x:Members>
   <this:Update_Issue.CategoryIds>
