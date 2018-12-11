@@ -1,6 +1,6 @@
 {
   "name": "Backlog.Activities",
-  "description": "Blank Library",
+  "description": "Backlog Activities",
   "main": "NewActivity.xaml",
   "dependencies": {
     "UiPath.UIAutomation.Activities": "18.3.6877.28298",
