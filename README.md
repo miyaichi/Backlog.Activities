@@ -103,7 +103,7 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、UiP
 | IssueData      | 追加した課題の情報(JObject) |
 
 ### File Upload
-添付ファイルを送信します。（  https://developer.nulab-inc.com/ja/docs/backlog/api/2/post-attachment-file/ )
+添付ファイルを送信します。（ https://developer.nulab-inc.com/ja/docs/backlog/api/2/post-attachment-file/ )
 
 #### Input
 | パラメーター名 | 内容                           |
@@ -116,3 +116,31 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、UiP
 | パラメーター名 | 内容                        |
 |:---------------|:----------------------------|
 | FileData       | 追加した課題の情報(JObject) |
+
+### Get Attachments
+課題の添付ファイルの一覧を取得します。( https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-list-of-issue-attachments/ )
+
+#### Input
+| パラメーター名 | 内容             |
+|:---------------|:-----------------|
+| SpaceName      | スペースID(必須) |
+| APIKey         | API キー(必須)   |
+| IssueId        | 課題のID(必須)   |
+
+#### Output
+
+| パラメーター名 | 内容                          |
+|:---------------|:------------------------------|
+| Attachments    | 添付ファイル一覧（DataTable） |
+
+### Download Attachment
+課題の添付ファイルをダウンロードします。( https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue-attachment/ )
+
+#### Input
+| パラメーター名 | 内容                   |
+|:---------------|:-----------------------|
+| SpaceName      | スペースID(必須)       |
+| APIKey         | API キー(必須)         |
+| IssueId        | 課題のID(必須)         |
+| AttachmentId   | 添付ファイルのID(必須) |
+| Name           | 添付ファイル名(必須)   |
