@@ -19,9 +19,9 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、UiP
 
 #### Output
 
-| パラメーター名 | 内容                  |
-|:---------------|:----------------------|
-| Issues         | 課題一覧（DataTable） |
+| パラメーター名 | 内容                                                                              |
+|:---------------|:----------------------------------------------------------------------------------|
+| Issues         | 課題一覧（DataTable）{ id,  projectId, issueKey, issueTypeName, summary, status } |
 
 ### Get Issue Data
 課題の情報を取得します。（ https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue/ )
@@ -129,9 +129,9 @@ Backlog API ( https://developer.nulab-inc.com/ja/docs/backlog/ ) のうち、UiP
 
 #### Output
 
-| パラメーター名 | 内容                          |
-|:---------------|:------------------------------|
-| Attachments    | 添付ファイル一覧（DataTable） |
+| パラメーター名 | 内容                                                     |
+|:---------------|:---------------------------------------------------------|
+| Attachments    | 添付ファイル一覧（DataTable）{ id, name, size, created } |
 
 ### Download Attachment
 課題の添付ファイルをダウンロードします。( https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-issue-attachment/ )
