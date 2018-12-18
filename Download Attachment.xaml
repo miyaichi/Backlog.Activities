@@ -65,10 +65,9 @@
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: 課題の添付ファイルをダウンロードする&#xD;&#xA;&#xD;&#xA;Parameter:&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xA;IssueId (In, String): Issue ID&#xA;AttachmentId (In, String): Attachment ID&#xD;&#xA;Name (In, String): Attachment File Name&#xD;&#xA;" DisplayName="Download Attachment" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Description: 課題の添付ファイルをダウンロードする&#xA;&#xA;Parameter:&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xA;IssueId (In, String): Issue ID&#xA;AttachmentId (In, String): Attachment ID&#xA;Name (In, String): Attachment File Name&#xA;" DisplayName="Download Attachment" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="EndPoint" />
       <Variable x:TypeArguments="x:String" Name="Result" />
@@ -101,7 +100,7 @@
         <Throw Exception="[new Exception( &quot;Backlog Download Attachment failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Else>
     </If>
-    <sads:DebugSymbol.Symbol>d1hDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcRG93bmxvYWQgQXR0YWNobWVudC54YW1sDkcDaQ4CAQFNBVQOAgERVQViFQIBB2MFZwoCAQJSMFKoAQIBFE8xTzsCARJVzANV0gMCARBVjQNVlQMCAQ5VnQNVpwMCAQxVtwJVwwICAQpVswNVwQMCAQhjE2MnAgEDZQllzAECAQVlGmWfAQIBBg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1hDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcRG93bmxvYWQgQXR0YWNobWVudC54YW1sDkYDaA4CAQFMBVMOAgERVAVhFQIBB2IFZgoCAQJRMFGoAQIBFE4xTjsCARJUzANU0gMCARBUjQNUlQMCAQ5UnQNUpwMCAQxUtwJUwwICAQpUswNUwQMCAQhiE2InAgEDZAlkzAECAQVkGmSfAQIBBg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -124,7 +123,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Download_Attachment_1" sap:VirtualizedContainerService.HintSize="304,458" />
+      <sap2010:ViewStateData Id="Download_Attachment_1" sap:VirtualizedContainerService.HintSize="526,732" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

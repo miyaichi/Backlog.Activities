@@ -69,7 +69,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: 添付ファイルの送信&#xD;&#xA;&#xD;&#xA;Parameter:&#xD;&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xD;&#xA;File (In, String): File Name&#xD;&#xA;File Id (Out, String): File ID" DisplayName="File Upload" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Description: 添付ファイルの送信&#xA;&#xA;Parameter:&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xA;File (In, String): File Name&#xA;File Id (Out, String): File ID" DisplayName="File Upload" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="FileName" />
       <Variable x:TypeArguments="x:String" Name="EndPoint" />
@@ -109,9 +109,7 @@
     </ui:HttpClient>
     <If Condition="[statusCode = 200]" DisplayName="StatusCode check" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
-          <Throw Exception="[new Exception( &quot;Backlog Update Issue failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
-        </Sequence>
+        <Throw Exception="[new Exception( &quot;Backlog Update Issue failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Else>
     </If>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[FileData]" JsonString="[Result]" />
@@ -130,7 +128,7 @@
         <InArgument x:TypeArguments="x:String">[FileData("id").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <sads:DebugSymbol.Symbol>d1BDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcRmlsZSBVcGxvYWQueGFtbB1IA4YBDgIBAVAFVw4CASJYBV8OAgEeYAVtFQIBFm4FdAoCARB1BXW8AQIBC3YFfBACAQZ9BYQBDgIBAlUwVY4BAgElUjFSOwIBI10wXUgCASFaMVo7AgEfYj1iQwIBHGDJA2DPAwIBG2hBaEsCARlg9wJggQMCARhlRWVYAgEXbhNuJwIBEXAJchQCARN1rwF1uQECAQ51lwF1owECAQx3B3sMAgEHggEwggFJAgEFfzF/OQIBA3ELcccBAgEUdxV3PwIBCHkLebQBAgEJcRxxmgECARV5HHmHAQIBCg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1BDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcRmlsZSBVcGxvYWQueGFtbBxIA4QBDgIBAVAFVw4CASFYBV8OAgEdYAVtFQIBFW4FcgoCARBzBXO8AQIBC3QFehACAQZ7BYIBDgIBAlUwVY4BAgEkUjFSOwIBIl0wXUgCASBaMVo7AgEeYj1iQwIBG2DJA2DPAwIBGmhBaEsCARhg9wJggQMCARdlRWVYAgEWbhNuJwIBEXAJcMUBAgETc68Bc7kBAgEOc5cBc6MBAgEMdQd5DAIBB4ABMIABSQIBBX0xfTkCAQNwGnCYAQIBFHUVdT8CAQh3C3e0AQIBCXccd4cBAgEK</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -138,13 +136,6 @@
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,146">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="314,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">

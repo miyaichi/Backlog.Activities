@@ -145,7 +145,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Create Issue" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Description: 新しい課題を追加します。&#xD;&#xA;&#xD;&#xA;Parameter:&#xD;&#xA;SpaceName (In, String): Space Name&#xA;APIKey (In, String): API Key&#xD;&#xA;ProjectID (In, String): Project ID&#xD;&#xA;Summery (In, String): Summery&#xD;&#xA;ParentIssueId (In, String): Parent Issue Id&#xD;&#xA;Description (In, String): Description&#xD;&#xA;StartDate (In, String): Start Date (YYYY-MM-DD)&#xD;&#xA;DueDate (In, String): Due Date (YYYY-MM-DD)&#xD;&#xA;EstimatedHours (In, String): Estimated Hours&#xD;&#xA;ActualHours (In, String): Actual Hours&#xD;&#xA;IssueTypeId (In, String): Issue Type Id&#xD;&#xA;CategoryIds (In, String): Category Id (Comma separated)&#xD;&#xA;VersionIds (In, String): Version Id (Comma separated)&#xD;&#xA;MilestoneIds (In, String): Milestone Id (Comma separated)&#xD;&#xA;PriorityId (In, String): Priority Id (Comma separated)&#xD;&#xA;AssigneeId (In, String): Assignee Id&#xD;&#xA;NotifiedUserIds (In, String): NotifiedUser Id (Comma separated)&#xD;&#xA;AttachmentIds (In, String): Attachment Id (Comma separated)&#xA;" DisplayName="Create Issue" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="EndPoint" />
       <Variable x:TypeArguments="x:String" Name="Result" />
@@ -340,9 +340,7 @@
     </ui:HttpClient>
     <If Condition="[statusCode = 201]" DisplayName="StatusCode check" sap2010:WorkflowViewState.IdRef="If_6">
       <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
-          <Throw Exception="[new Exception( &quot;Backlog Create Issue failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
-        </Sequence>
+        <Throw Exception="[new Exception( &quot;Backlog Create Issue failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Else>
     </If>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[IssueData]" JsonString="[Result]" />
@@ -353,7 +351,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcQ3JlYXRlIElzc3VlLnhhbWxlPgc+NgENVwdXNgEMUgdSNgELLwcvNgEKSAdINgEJKgcqNgEITQdNNgEHJQclNgEGOQc5NgEFNAc0NgEEQwdDNgEDXAdcNgEClAED5QIOAgEBmgEFoQEOAwGLAaIBBcABEgIBecEBBd8BEgIBZ+ABBf4BEgIBVf8BBZ0CEgIBQ54CBbwCEgIBMb0CBdQCFQIBEtUCBdsCCgIBDNwCBdwCvQECAQfdAgXjAhACAQKfATCfAXwDAY4BnAExnAE7AwGMAaIB5wGiAYwCAwGJAagBC70BFgIBesEB5QHBAYkCAgF3xwEL3AEWAgFo4AHpAeABjwICAWXmAQv7ARYCAVb/Ae8B/wGYAgIBU4UCC5oCFgIBRJ4C6wGeApICAgFBpAILuQIWAgEyvQLQA70C1gMCATDGAkDGAkkCAS7OAkPOAk8CASzFAkLFAk0CASrLAkfLAlcCASi9AqEDvQKrAwIBJr0C0AK9AtwCAgEkzQJEzQJRAgEizAJEzAJRAgEgxwJGxwJVAgEeyQJCyQJNAgEcygJAygJJAgEavQK3A70CxQMCARjPAkPPAk8CARbCAkXCAmYCARXIAkTIAlECARPVAhPVAicCAQ3XAgnZAhQCAQ/cArAB3AK6AQIBCtwClwHcAqQBAgEI3gIH4gIMAgEDqQENsAEWAwGEAbEBDbwBEgIBe8gBDc8BFgIBctABDdsBEgIBaecBDe4BFgIBYO8BDfoBEgIBV4YCDY0CFgIBTo4CDZkCEgIBRaUCDawCFgIBPK0CDbgCEgIBM9gCC9gCxwECARDeAhXeAkACAQTgAgvgArYBAgEFrgE4rgFBAwGHAasBOasBPQMBhQGxARuxATcCAXyzARG6ARoCAX7NATjNAUECAXXKATnKAT0CAXPQARvQATcCAWrSARHZARoCAWzsATjsAUECAWPpATnpAT0CAWHvARvvATcCAVjxARH4ARoCAVqLAjiLAkECAVGIAjmIAj0CAU+OAhuOAjcCAUaQAhGXAhoCAUiqAjiqAkECAT+nAjmnAj0CAT2tAhutAjcCATSvAhG2AhoCATbYAhzYApoBAgER4AIc4AKJAQIBBrgBPLgBYgMBgQG1AT21AUcCAX/XATzXAWECAW/UAT3UAUcCAW32ATz2AWMCAV3zAT3zAUcCAVuVAjyVAmYCAUuSAj2SAkcCAUm0Ajy0AmQCATmxAj2xAkcCATc=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1FDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcQ3JlYXRlIElzc3VlLnhhbWxkPgc+NgENVwdXNgEMUgdSNgELLwcvNgEKSAdINgEJKgcqNgEITQdNNgEHJQclNgEGOQc5NgEFNAc0NgEEQwdDNgEDXAdcNgEClAED4wIOAgEBmgEFoQEOAwGKAaIBBcABEgIBeMEBBd8BEgIBZuABBf4BEgIBVP8BBZ0CEgIBQp4CBbwCEgIBML0CBdQCFQIBEdUCBdkCCgIBDNoCBdoCvQECAQfbAgXhAhACAQKfATCfAXwDAY0BnAExnAE7AwGLAaIB5wGiAYwCAwGIAagBC70BFgIBecEB5QHBAYkCAgF2xwEL3AEWAgFn4AHpAeABjwICAWTmAQv7ARYCAVX/Ae8B/wGYAgIBUoUCC5oCFgIBQ54C6wGeApICAgFApAILuQIWAgExvQLQA70C1gMCAS/GAkDGAkkCAS3OAkPOAk8CASvFAkLFAk0CASnLAkfLAlcCASe9AqEDvQKrAwIBJb0C0AK9AtwCAgEjzQJEzQJRAgEhzAJEzAJRAgEfxwJGxwJVAgEdyQJCyQJNAgEbygJAygJJAgEZvQK3A70CxQMCARfPAkPPAk8CARXCAkXCAmYCARTIAkTIAlECARLVAhPVAicCAQ3XAgnXAsUBAgEP2gKwAdoCugECAQraApcB2gKkAQIBCNwCB+ACDAIBA6kBDbABFgMBgwGxAQ28ARICAXrIAQ3PARYCAXHQAQ3bARICAWjnAQ3uARYCAV/vAQ36ARICAVaGAg2NAhYCAU2OAg2ZAhICAUSlAg2sAhYCATutAg24AhICATLXAhrXApgBAgEQ3AIV3AJAAgEE3gIL3gK2AQIBBa4BOK4BQQMBhgGrATmrAT0DAYQBsQEbsQE3AgF7swERugEaAgF9zQE4zQFBAgF0ygE5ygE9AgFy0AEb0AE3AgFp0gER2QEaAgFr7AE47AFBAgFi6QE56QE9AgFg7wEb7wE3AgFX8QER+AEaAgFZiwI4iwJBAgFQiAI5iAI9AgFOjgIbjgI3AgFFkAIRlwIaAgFHqgI4qgJBAgE+pwI5pwI9AgE8rQIbrQI3AgEzrwIRtgIaAgE13gIc3gKJAQIBBrgBPLgBYgMBgAG1AT21AUcCAX7XATzXAWECAW7UAT3UAUcCAWz2ATz2AWMCAVzzAT3zAUcCAVqVAjyVAmYCAUqSAj2SAkcCAUi0Ajy0AmQCATixAj2xAkcCATY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -426,7 +424,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="314,112">
+      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="464,112">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -446,7 +444,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_5" sap:VirtualizedContainerService.HintSize="314,112">
+      <sap2010:ViewStateData Id="ForEach`1_5" sap:VirtualizedContainerService.HintSize="464,112">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -455,27 +453,20 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="464,22" />
       <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,210">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,296">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="464,60" />
       <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="464,210" />
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="314,52">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="464,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -483,14 +474,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1518">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1796">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Create_Issue_1" sap:VirtualizedContainerService.HintSize="376,1354" />
+      <sap2010:ViewStateData Id="Create_Issue_1" sap:VirtualizedContainerService.HintSize="526,1876" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

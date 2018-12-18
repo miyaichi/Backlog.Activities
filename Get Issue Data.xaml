@@ -74,8 +74,6 @@
       <Variable x:TypeArguments="x:String" Name="Result" />
       <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
       <Variable x:TypeArguments="x:String" Name="EndPoint" />
-      <Variable x:TypeArguments="njl:JObject" Name="JsonObject" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Dict" />
     </Sequence.Variables>
     <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
@@ -101,9 +99,7 @@
     </ui:HttpClient>
     <If Condition="[statusCode = 200]" DisplayName="StatusCode check" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <Throw Exception="[new Exception( &quot;Backlog Get Issue Data failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
-        </Sequence>
+        <Throw Exception="[new Exception( &quot;Backlog Get Issue Data failed. Status:  &quot; + StatusCode.ToString + &quot; Message: &quot; + Result)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Else>
     </If>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[IssueData]" JsonString="[Result]" />
@@ -114,21 +110,14 @@
         </If.Else>
       </If>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d1NDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3VlIERhdGEueGFtbBZIA3YOAgEBUAVXDgIBGlgFZRUCARJmBWwKAgEMbQVtvQECAQduBXQQAgECVTBVhwECAR1SMVI7AgEbWM4DWNQDAgEZWJ8DWKkDAgEXWM8CWNsCAgEVWLUDWMMDAgETZhNmJwIBDWgJahQCAQ9tsAFtugECAQptlwFtpAECAQhvB3MMAgEDaQtpyQECARBvFW9AAgEEcQtxuAECAQVpHGmcAQIBEXEccYsBAgEG</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1NDOlxVc2Vyc1xZb3NoaWhpa28gTWl5YWljaGlcRG9jdW1lbnRzXFVpUGF0aFxCYWNrbG9nLkFjdGl2aXRpZXNcR2V0IElzc3VlIERhdGEueGFtbBVIA3IOAgEBTgVVDgIBGVYFYxUCARFkBWgKAgEMaQVpvQECAQdqBXAQAgECUzBThwECARxQMVA7AgEaVs4DVtQDAgEYVp8DVqkDAgEWVs8CVtsCAgEUVrUDVsMDAgESZBNkJwIBDWYJZscBAgEPabABaboBAgEKaZcBaaQBAgEIawdvDAIBA2YaZpoBAgEQaxVrQAIBBG0LbbgBAgEFbRxtiwECAQY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="486,60" />
-      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="486,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="HttpClient_1" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222,146">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="486,52">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="314,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -138,8 +127,8 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,208" />
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="486,332">
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,210" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="314,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -147,7 +136,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,934">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="336,654">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -155,7 +144,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Get_Issue_Data_1" sap:VirtualizedContainerService.HintSize="548,1014" />
+      <sap2010:ViewStateData Id="Get_Issue_Data_1" sap:VirtualizedContainerService.HintSize="376,734" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
